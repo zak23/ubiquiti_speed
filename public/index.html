@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Trap Detection System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚗 Speed Trap Detection System</h1>
+            <p class="subtitle">Live vehicle speed monitoring</p>
+            <div class="status">
+                <span id="status-indicator" class="status-dot"></span>
+                <span id="status-text">Loading...</span>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button id="tab-detections" class="tab-button" data-tab="detections">Detections</button>
+            <button id="tab-webhooks" class="tab-button active" data-tab="webhooks">Webhooks</button>
+        </nav>
+
+        <main>
+            <div id="detections-container" class="tab-content detections-grid">
+                <div class="no-detections">
+                    <p>No detections yet. Waiting for webhook events...</p>
+                </div>
+            </div>
+            
+            <div id="webhooks-container" class="tab-content active webhooks-list">
+                <div class="no-webhooks">
+                    <p>No webhooks logged yet. Waiting for webhook events...</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Ubiquiti Protect Speed Trap API</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

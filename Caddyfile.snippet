@@ -1,0 +1,25 @@
+# Global option: Disable automatic HTTPS redirects when behind Cloudflare proxy
+# This prevents redirect loops while keeping cloudflare_tls for SSL certificates
+{
+  auto_https disable_redirects
+}
+
+# Speed Trap
+speedtrap.ohfuckputitback.in {
+  import cloudflare_tls
+
+  reverse_proxy http://192.168.1.64:3001 {
+    header_up Host {host}
+    header_up X-Real-IP {remote_host}
+    
+    # Timeout settings for large webhook payloads (base64 images)
+    transport http {
+      dial_timeout 10s
+      response_header_timeout 10s
+    }
+  }
+  
+  # Note: Caddy v2 handles large request bodies automatically
+  # The Node.js server already has bodyParser limit set to 50mb
+}
+
